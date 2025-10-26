@@ -5,6 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(HadwareInfo.RequestRamInfo);
+        //You can test here!
     }
 }

@@ -1,5 +1,3 @@
-# install.ps1
-
 Param(
     [string] $RepoUrl = "https://github.com/htcdevk0/InfoRequest-Csharp.git",
     [string] $LocalPath = "$PSScriptRoot\InfoRequest-Csharp",
@@ -9,7 +7,7 @@ Param(
 Write-Host "Installing InfoRequest globally..."
 
 if (Test-Path $LocalPath) {
-    Write-Host "Repository already exists — updating..."
+    Write-Host "Repository already exists - updating..."
     Push-Location $LocalPath
     git pull
     Pop-Location
@@ -25,13 +23,13 @@ dotnet build -c Release
 dotnet pack -c Release
 
 if (!(Test-Path $NugetFolder)) {
+    Write-Host "Creating local NuGet folder at $NugetFolder"
     New-Item -ItemType Directory -Path $NugetFolder | Out-Null
-    Write-Host "Created local package folder: $NugetFolder"
 }
 
 $package = Get-ChildItem -Path ".\bin\Release\" -Filter "*.nupkg" | Select-Object -First 1
 if (-not $package) {
-    throw "No .nupkg package found. Please verify that the build and pack steps succeeded."
+    throw "No .nupkg package found. Please verify that build and pack ran correctly."
 }
 
 Copy-Item $package.FullName -Destination (Join-Path $NugetFolder $package.Name) -Force
@@ -42,6 +40,6 @@ dotnet nuget add source $NugetFolder --name InfoRequestLocal --force
 Pop-Location
 
 Write-Host ""
-Write-Host "Installation completed successfully!"
-Write-Host "You can now use InfoRequest in any C# project with:"
-Write-Host ("  dotnet add package InfoRequest --source " + $NugetFolder)
+Write-Host "Installation complete!"
+Write-Host "Use this command in any project:"
+Write-Host "dotnet add package InfoRequest --source $NugetFolder"

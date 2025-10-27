@@ -1,5 +1,5 @@
 ﻿namespace InfoRequest.Requests;
-
+using System;
 public class MachineInfo
 {
     public static string RequestMachineName = Environment.MachineName;

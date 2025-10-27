@@ -1,6 +1,6 @@
 Param(
     [string] $RepoUrl = "https://github.com/htcdevk0/InfoRequest-Csharp.git",
-    [string] $LocalPath = "$PSScriptRoot\InfoRequest-Csharp",
+    [string] $LocalPath = "$env:TEMP\InfoRequest-Csharp",
     [string] $NugetFolder = "C:\NugetLocal"
 )
 
@@ -27,7 +27,7 @@ if (!(Test-Path $NugetFolder)) {
     New-Item -ItemType Directory -Path $NugetFolder | Out-Null
 }
 
-$package = Get-ChildItem -Path ".\bin\Release\" -Filter "*.nupkg" | Select-Object -First 1
+$package = Get-ChildItem -Path ".\bin\Release\" -Filter "*.nupkg" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if (-not $package) {
     throw "No .nupkg package found. Please verify that build and pack ran correctly."
 }

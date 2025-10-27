@@ -1,5 +1,5 @@
 ﻿namespace InfoRequest.Requests;
-
+using System;
 public class OSInfo
 {
     public static string RequestOS = Environment.OSVersion.ToString();

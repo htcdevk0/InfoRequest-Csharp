@@ -1,5 +1,5 @@
-using System;
 namespace InfoRequest.Requests;
+using System;
 
 public class DotNetInfo
 {

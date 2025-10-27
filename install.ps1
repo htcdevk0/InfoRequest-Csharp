@@ -4,7 +4,7 @@ Param(
     [string] $NugetFolder = "C:\NugetLocal"
 )
 
-Write-Host "Installing InfoRequest globally..."
+Write-Host "Installing InfoRequest to Temp"
 
 if (Test-Path $LocalPath) {
     Write-Host "Repository already exists - updating..."

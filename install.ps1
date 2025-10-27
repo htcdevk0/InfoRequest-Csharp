@@ -44,4 +44,4 @@ Pop-Location
 Write-Host ""
 Write-Host "Installation completed successfully!"
 Write-Host "You can now use InfoRequest in any C# project with:"
-Write-Host "  dotnet add package InfoRequest --source $NugetFolder"
+Write-Host ("  dotnet add package InfoRequest --source " + $NugetFolder)

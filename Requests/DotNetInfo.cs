@@ -1,4 +1,5 @@
-﻿namespace InfoRequest.Requests;
+using System;
+namespace InfoRequest.Requests;
 
 public class DotNetInfo
 {
